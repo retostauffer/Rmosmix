@@ -8,7 +8,7 @@
 # -------------------------------------------------------------------
 # - EDITORIAL:   2019-01-09, RS: Created file on thinkreto.
 # -------------------------------------------------------------------
-# - L@ST MODIFIED: 2019-01-09 17:06 on marvin
+# - L@ST MODIFIED: 2019-01-09 18:35 on marvin
 # -------------------------------------------------------------------
 
     library("mosmix")
@@ -35,7 +35,7 @@
     for ( stn in stations ) {
 
         # Check for available files on the DWD server
-        files <- get_files_available("L", stn, "DWDMOS_L")
+        files <- get_files_available("L", stn, outdir = "DWDMOS_L")
 
         # No files we have not yet processed? Continue.
         if ( nrow(files) == 0 ) next
@@ -89,7 +89,7 @@
 
     # Find latest MOS forecast on opendata.dwd.de
     # As this takes a while: only take the last two entries!
-    files <- get_files_available("S", "DWDMOS_S")
+    files <- get_files_available("S", outdir = "DWDMOS_S")
     files <- tail(files, 2)
 
     # Looping over all not-yet-processed files (if there are any),

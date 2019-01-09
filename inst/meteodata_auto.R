@@ -7,7 +7,7 @@
 # -------------------------------------------------------------------
 # - EDITORIAL:   2019-01-09, RS: Created file on thinkreto.
 # -------------------------------------------------------------------
-# - L@ST MODIFIED: 2019-01-09 17:30 on meteo-data.uibk.ac.at
+# - L@ST MODIFIED: 2019-01-09 18:35 on marvin
 # -------------------------------------------------------------------
 
     library("mosmix")
@@ -53,7 +53,7 @@
     for ( stn in stations ) {
 
         # Check for available files on the DWD server
-        files <- get_files_available("L", stn, "DWDMOS_L")
+        files <- get_files_available("L", stn, outdir = "DWDMOS_L")
 
         # No files we have not yet processed? Continue.
         if ( nrow(files) == 0 ) next
@@ -94,18 +94,12 @@
 # set and extract the required stations from it.
 # -------------------------------------------------------------------
 
-    # List of required stations (user defines station list)
-    #  6660: Zuerich
-    # 11120: Innsbruck Airport
-    # 11035: Vienna, Hohe Warte
-    stations <- c(6660, 11120, 11035)
-
     # Processing S-type forecasts
     cat("\n\nProcessing S-type DWD MOSMIX forecasts\n")
 
     # Find latest MOS forecast on opendata.dwd.de
     # As this takes a while: only take the last two entries!
-    files <- get_files_available("S", "DWDMOS_S")
+    files <- get_files_available("S", outdir = "DWDMOS_S")
     files <- tail(files, 2)
 
     # Looping over all not-yet-processed files (if there are any),
