@@ -42,6 +42,7 @@ parameter_description <- function(...) {
     }
     res <- do.call(rbind, lapply(nodes, fun))
 
+    free(doc)
     # Remove temporary file and return data.frame with the 
     # required information.
     file.remove(tmpfile)

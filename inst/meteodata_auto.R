@@ -7,7 +7,7 @@
 # -------------------------------------------------------------------
 # - EDITORIAL:   2019-01-09, RS: Created file on thinkreto.
 # -------------------------------------------------------------------
-# - L@ST MODIFIED: 2019-01-09 18:53 on marvin
+# - L@ST MODIFIED: 2019-01-09 18:48 on meteo-data.uibk.ac.at
 # -------------------------------------------------------------------
 
     library("mosmix")
@@ -47,7 +47,7 @@
 # -------------------------------------------------------------------
 
     # Processing L-type forecasts (station-by-station)
-    cat("\n\nProcessing L-type DWD MOSMIX forecasts\n")
+    cat("\n-------------------------\nProcessing L-type DWD MOSMIX forecasts\n")
 
     # Looping over the user-specified set of stations
     for ( stn in stations ) {
@@ -82,10 +82,13 @@
             fcst <- get_forecasts(sprintf("%05d", stn), doc, datetime, meta)
             write_ascii(fcst, dir = "DWDMOS_L")
 
+            XML::free(doc) # Release object, clean up memory
+
             # Remove the downloaded kmz and extracted kml file.
             file.remove(kmz, kml)
         }
     }
+        
 
 
 # -------------------------------------------------------------------
@@ -95,7 +98,7 @@
 # -------------------------------------------------------------------
 
     # Processing S-type forecasts
-    cat("\n\nProcessing S-type DWD MOSMIX forecasts\n")
+    cat("\n-------------------------\nProcessing S-type DWD MOSMIX forecasts\n")
 
     # Find latest MOS forecast on opendata.dwd.de
     # As this takes a while: only take the last two entries!
@@ -103,37 +106,41 @@
 
     # Looping over all not-yet-processed files (if there are any),
     # download the XML file, extract information, done.
-    for ( i in 1:nrow(files) ) {
-
-        cat(sprintf("* Downloading \"%s\"\n", as.character(files$srcfile[i])))
-
-        # Downloading the data set
-        kmz <- tempfile(pattern = "DWDMOS_S_", fileext = ".kmz")
-        check   <- try(download.file(as.character(files$url[i]), kmz,
-                                     method = "curl", quiet = TRUE))
-        if ( inherits(check, "try-error") )
-            warning(sprintf("Problems downloading data for %d, skip.", stn))
-
-        # Unzip and parse the XML file
-        kml      <- unzip(kmz)
-        doc      <- xmlParse(kml)
-
-        # Extracting meta information and datetime information
-        meta     <- get_meta_info(doc)
-        datetime <- get_datetime(doc)
-
-        # Looping over the stations, extract forecasts and save into
-        # the output directory as specified by "dir".
-        for ( stn in stations ) {
-            fcst <- get_forecasts(sprintf("%05d", stn), doc, datetime, meta)
-            write_ascii(fcst, dir = "DWDMOS_S")
+    if ( nrow(files) > 0 ) {
+        cat(sprintf("* Found %d files to process ...\n"))
+        for ( i in 1:nrow(files) ) {
+   
+            cat(sprintf("* Downloading \"%s\"\n", as.character(files$srcfile[i])))
+   
+            # Downloading the data set
+            kmz <- tempfile(pattern = "DWDMOS_S_", fileext = ".kmz")
+            check   <- try(download.file(as.character(files$url[i]), kmz,
+                                         method = "curl", quiet = TRUE))
+            if ( inherits(check, "try-error") )
+                warning(sprintf("Problems downloading data for %d, skip.", stn))
+   
+            # Unzip and parse the XML file
+            kml      <- unzip(kmz)
+            doc      <- xmlParse(kml)
+   
+            # Extracting meta information and datetime information
+            meta     <- get_meta_info(doc)
+            datetime <- get_datetime(doc)
+   
+            # Looping over the stations, extract forecasts and save into
+            # the output directory as specified by "dir".
+            for ( stn in stations ) {
+                fcst <- get_forecasts(sprintf("%05d", stn), doc, datetime, meta)
+                write_ascii(fcst, dir = "DWDMOS_S")
+            }
+            XML::free(doc) # Release object, clean up memory
+   
+            # Remove the kmz and kml file ...
+            file.remove(kmz, kml)
         }
-
-        # Remove the kmz and kml file ...
-        file.remove(kmz, kml)
+    } else {
+        cat(sprintf("* No new files, nothing to do at the moment.\n"))
     }
-
-
 
 
 

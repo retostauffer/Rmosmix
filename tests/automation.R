@@ -8,7 +8,7 @@
 # -------------------------------------------------------------------
 # - EDITORIAL:   2019-01-09, RS: Created file on thinkreto.
 # -------------------------------------------------------------------
-# - L@ST MODIFIED: 2019-01-09 18:35 on marvin
+# - L@ST MODIFIED: 2019-01-09 19:49 on marvin
 # -------------------------------------------------------------------
 
     library("mosmix")
@@ -62,6 +62,7 @@
             # Extract forecasts for this station and write to ASCII file.
             fcst <- get_forecasts(sprintf("%05d", stn), doc, datetime, meta)
             write_ascii(fcst, dir = "DWDMOS_L")
+            free(doc) # Release connection and free memory
 
             # Remove the downloaded kmz and extracted kml file.
             file.remove(kmz, kml)
@@ -118,6 +119,7 @@
             fcst <- get_forecasts(sprintf("%05d", stn), doc, datetime, meta)
             write_ascii(fcst, dir = "DWDMOS_S")
         }
+        free(doc) # Release connection and free memory
 
         # Remove the kmz and kml file ...
         file.remove(kmz, kml)
