@@ -7,7 +7,7 @@
 # -------------------------------------------------------------------
 # - EDITORIAL:   2019-01-09, RS: Created file on thinkreto.
 # -------------------------------------------------------------------
-# - L@ST MODIFIED: 2019-01-09 18:35 on marvin
+# - L@ST MODIFIED: 2019-01-09 18:53 on marvin
 # -------------------------------------------------------------------
 
     library("mosmix")
@@ -100,7 +100,6 @@
     # Find latest MOS forecast on opendata.dwd.de
     # As this takes a while: only take the last two entries!
     files <- get_files_available("S", outdir = "DWDMOS_S")
-    files <- tail(files, 2)
 
     # Looping over all not-yet-processed files (if there are any),
     # download the XML file, extract information, done.
