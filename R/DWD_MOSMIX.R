@@ -553,9 +553,13 @@ write_ascii.dwdforecast <- function(x, file = NULL, dir = "DWDMOS", parameter = 
 #' file.remove(kmz, kml)
 #' @export
 #' @author Reto Stauffer
+#' @importFrom utils download.file
 get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
 
     type <- match.arg(type, c("L", "S"))
+
+    # Temporary file for index.html which will be downloaded in a second.
+    tmpfile <- tempfile()
 
     # MOSMIX_L (4 times a day, are available as single_station files. Thus,
     # 'stn' has to be provided if type = "L"!
@@ -564,11 +568,15 @@ get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
         stopifnot(inherits(stn, c("integer", "numeric")))
 
         # Read URL, deparse information.
-        url <- sprintf("https://opendata.dwd.de/weather/local_forecasts/mos/MOSMIX_L/single_stations/%1$05d/kml/", stn)
-        files <- readLines(url)
+        idxurl <- sprintf("https://opendata.dwd.de/weather/local_forecasts/mos/MOSMIX_L/single_stations/%1$05d/kml/", stn)
+        check <- try(download.file(idxurl, tmpfile, quiet = TRUE))
+        if ( inherits(check, "try-error") )
+            stop("Problems reaching opendata.dwd.de index file to check for available files!")
+        files <- readLines(tmpfile)
         files <- regmatches(files, regexpr("MOSMIX_L_[0-9]{10}_[0-9a-zA-Z]+\\.kmz", files))
         times <- regmatches(files, regexpr("[0-9]{10}", files))
         times <- as.POSIXct(strptime(times, "%Y%m%d%H"))
+        file.remove(tmpfile)
 
         # Check if local file exists.
         datfiles <- sprintf("%1$s/%2$05d/DWDMOS_%3$s_%2$05d.dat", outdir, stn, strftime(times, "%Y%m%d%H%M%S"))
@@ -576,14 +584,17 @@ get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
 
         res <- data.frame(datetime = times, dstfile = datfiles, processed = datcheck,
                           srcfile = files, url = sprintf("%s/%s", url, files))
-        subset(res, processed == FALSE)
+        res <- subset(res, processed == FALSE)
 
     } else {
 
 
         # Read URL, deparse information.
-        url = "https://opendata.dwd.de/weather/local_forecasts/mos/MOSMIX_S/all_stations/kml/"
-        files <- readLines(url)
+        idxurl = "https://opendata.dwd.de/weather/local_forecasts/mos/MOSMIX_S/all_stations/kml/"
+        check <- try(download.file(idxurl, tmpfile, quiet = TRUE))
+        if ( inherits(check, "try-error") )
+            stop("Problems reaching opendata.dwd.de index file to check for available files!")
+        files <- readLines(tmpfile)
         files <- regmatches(files, regexpr("MOSMIX_S_[0-9]{10}_[0-9]+\\.kmz", files))
         times <- regmatches(files, regexpr("[0-9]{10}", files))
         times <- as.POSIXct(strptime(times, "%Y%m%d%H"))
@@ -594,8 +605,12 @@ get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
                            datfiles = datfiles)
         res <- data.frame(datetime = times, processed = datcheck,
                           srcfile = files, url = sprintf("%s/%s", url, files))
-        subset(res, processed == FALSE)
+        res <- subset(res, processed == FALSE)
     }
+
+    # Delete temporary file and return
+    file.remove(tempfile)
+    return(res)
 }
 
 #' @importFrom utils globalVariables

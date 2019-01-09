@@ -14,4 +14,4 @@ Description: Downloading DWD MOSMIX forecasts publicly available on
     the package :).
 License: GPL-2
 RoxygenNote: 6.1.0
-Depends: R(>= 3.4), zoo, sp, XML
+Depends: R(>= 3.1), zoo, sp, XML
