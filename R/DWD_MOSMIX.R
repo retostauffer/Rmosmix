@@ -576,15 +576,16 @@ get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
         files <- regmatches(files, regexpr("MOSMIX_L_[0-9]{10}_[0-9a-zA-Z]+\\.kmz", files))
         times <- regmatches(files, regexpr("[0-9]{10}", files))
         times <- as.POSIXct(strptime(times, "%Y%m%d%H"))
-        file.remove(tmpfile)
 
         # Check if local file exists.
         datfiles <- sprintf("%1$s/%2$05d/DWDMOS_%3$s_%2$05d.dat", outdir, stn, strftime(times, "%Y%m%d%H%M%S"))
         datcheck <- file.exists(datfiles)
 
         res <- data.frame(datetime = times, dstfile = datfiles, processed = datcheck,
-                          srcfile = files, url = sprintf("%s/%s", url, files))
-        res <- subset(res, processed == FALSE)
+                          srcfile = files, url = sprintf("%s/%s", idxurl, files))
+
+        # Subet and return
+        return(subset(res, processed == FALSE))
 
     } else {
 
@@ -604,13 +605,12 @@ get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
                            sum(grepl(sprintf("_%s_.*\\.dat$", strftime(x, "%Y%m%d%H%M%S")), datfiles)) > 0,
                            datfiles = datfiles)
         res <- data.frame(datetime = times, processed = datcheck,
-                          srcfile = files, url = sprintf("%s/%s", url, files))
-        res <- subset(res, processed == FALSE)
+                          srcfile = files, url = sprintf("%s/%s", idxurl, files))
+
+        # Subet and return
+        return(subset(res, processed == FALSE))
     }
 
-    # Delete temporary file and return
-    file.remove(tempfile)
-    return(res)
 }
 
 #' @importFrom utils globalVariables
