@@ -71,6 +71,7 @@
 <ul>
 <li><a href="https://opendata.dwd.de">DWD open data server</a></li>
 <li><a href="https://www.dwd.de/copyright">DWD copyright information</a></li>
+<li><a href="https://www.dwd.de/EN/ourservices/met_application_mosmix/met_application_mosmix.html">DWD MOSMIX product information</a></li>
 </ul>
 <p>This small working package allows to easily download and decode these forecasts. The forecasts become available several times a day, XML format. The <code>mosmix</code> R package provides the following features:</p>
 <ul>
@@ -79,6 +80,7 @@
 <li>Returns convenient time series objects</li>
 <li>Write (subsetted) data sets to local ASCII files</li>
 </ul>
+<p>Allows to download <em>MOSMIX-L</em> (4x daily, 115 parameters, up to 240 hours ahead) and <em>MOSMIX-S</em> (24x daily, 40 parameters, up to 240 hours ahead).</p>
 <p>For the decoding of the data sets this package depends on the <a href="https://cran.r-project.org/package=XML">XML</a> package. Plesae note that, to be able to install the R package, <code>libxml</code> has to be installed. The forecasts are time series data wherefore this package also depends on the R package <a href="https://cran.r-project.org/package=zoo">zoo</a>.</p>
 </div>
 <div id="package-status" class="section level1">

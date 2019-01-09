@@ -9,6 +9,7 @@ sets.
 
 * [DWD open data server](https://opendata.dwd.de)
 * [DWD copyright information](https://www.dwd.de/copyright)
+* [DWD MOSMIX product information](https://www.dwd.de/EN/ourservices/met_application_mosmix/met_application_mosmix.html)
 
 This small working package allows to easily download and decode
 these forecasts. The forecasts become available several times
@@ -20,6 +21,9 @@ features:
   locations
 * Returns convenient time series objects
 * Write (subsetted) data sets to local ASCII files
+
+Allows to download _MOSMIX-L_ (4x daily, 115 parameters, up to 240 hours ahead)
+and _MOSMIX-S_ (24x daily, 40 parameters, up to 240 hours ahead).
 
 For the decoding of the data sets this package depends on the
 [XML](https://cran.r-project.org/package=XML) package.

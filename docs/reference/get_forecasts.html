@@ -213,25 +213,25 @@ in an empty object if no values are available given the
 #&gt; Issuer: Deutscher Wetterdienst
 #&gt; ProductID: MOSMIX
 #&gt; GeneratingProcess: DWD MOSMIX hourly, Version 1.0
-#&gt; IssueTime: 2019-01-09 15:00:00 UTC
+#&gt; IssueTime: 2019-01-09 21:00:00 UTC
 #&gt; ReferencedModel(s)
 #&gt; - 2019-01-09 12:00:00 UTC, ICON
-#&gt; - 2019-01-09 00:00:00 UTC, ECMWF/IFS 
+#&gt; - 2019-01-09 12:00:00 UTC, ECMWF/IFS 
 #&gt; 
 #&gt; Object is of class zoo:   TRUE 
 #&gt; Station identifier:       11120 
 #&gt; Station description:      INNSBRUCK FL. 
 #&gt; Station location:         11.35,47.27,581.0 (lon/lat/alt)
-#&gt; First forecast for:       2019-01-09 16:00:00 
-#&gt; Last forecast for:        2019-01-19 22:00:00 
+#&gt; First forecast for:       2019-01-09 22:00:00 
+#&gt; Last forecast for:        2019-01-20 04:00:00 
 #&gt; Number forecasts (time):  247 
-#&gt; Number of parameters:     98 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>fcst1</span>))</div><div class='output co'>#&gt; [1] "dwdforecast" "zoo"        </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>fcst1</span>[,<span class='fl'>1</span>:<span class='fl'>5</span>]))</div><div class='output co'>#&gt;                       PPPP E_PPP     TX    TTT E_TTT
-#&gt; 2019-01-09 16:00:00 101240    30     NA 272.65   0.7
-#&gt; 2019-01-09 17:00:00 101310    50     NA 272.85   0.8
-#&gt; 2019-01-09 18:00:00 101350    60 274.05 272.95   0.9
-#&gt; 2019-01-09 19:00:00 101400    60     NA 272.95   1.0
-#&gt; 2019-01-09 20:00:00 101450    60     NA 272.95   0.9
-#&gt; 2019-01-09 21:00:00 101540    60     NA 272.75   0.8</div><div class='input'>
+#&gt; Number of parameters:     98 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>fcst1</span>))</div><div class='output co'>#&gt; [1] "dwdforecast" "zoo"        </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>fcst1</span>[,<span class='fl'>1</span>:<span class='fl'>5</span>]))</div><div class='output co'>#&gt;                       PPPP E_PPP TX    TTT E_TTT
+#&gt; 2019-01-09 22:00:00 101590    20 NA 272.05   0.5
+#&gt; 2019-01-09 23:00:00 101610    40 NA 271.85   0.5
+#&gt; 2019-01-10 00:00:00 101650    50 NA 271.75   0.6
+#&gt; 2019-01-10 01:00:00 101680    60 NA 271.75   0.6
+#&gt; 2019-01-10 02:00:00 101700    60 NA 271.65   0.5
+#&gt; 2019-01-10 03:00:00 101790    60 NA 271.55   0.8</div><div class='input'>
 <span class='co'># Extracting forecasts now</span>
 <span class='co'># - parameter = NULL:    extracts all parameters</span>
 <span class='co'># - as.zoo = FALSE:      returns a data.frame</span>
@@ -240,17 +240,17 @@ in an empty object if no values are available given the
 #&gt; Issuer: Deutscher Wetterdienst
 #&gt; ProductID: MOSMIX
 #&gt; GeneratingProcess: DWD MOSMIX hourly, Version 1.0
-#&gt; IssueTime: 2019-01-09 15:00:00 UTC
+#&gt; IssueTime: 2019-01-09 21:00:00 UTC
 #&gt; ReferencedModel(s)
 #&gt; - 2019-01-09 12:00:00 UTC, ICON
-#&gt; - 2019-01-09 00:00:00 UTC, ECMWF/IFS 
+#&gt; - 2019-01-09 12:00:00 UTC, ECMWF/IFS 
 #&gt; 
 #&gt; Object is of class zoo:   FALSE 
 #&gt; Station identifier:       11120 
 #&gt; Station description:      INNSBRUCK FL. 
 #&gt; Station location:         11.35,47.27,581.0 (lon/lat/alt)
-#&gt; First forecast for:       2019-01-09 16:00:00 
-#&gt; Last forecast for:        2019-01-19 22:00:00 
+#&gt; First forecast for:       2019-01-09 22:00:00 
+#&gt; Last forecast for:        2019-01-20 04:00:00 
 #&gt; Number forecasts (time):  247 
 #&gt; Number of parameters:     99 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>fcst2</span>))</div><div class='output co'>#&gt; [1] "dwdforecast" "data.frame" </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>fcst2</span>[,<span class='fl'>1</span>:<span class='fl'>5</span>]))</div><div class='output co'>#&gt; DWD MOS Forecast Object
 #&gt; 
@@ -261,8 +261,8 @@ in an empty object if no values are available given the
 #&gt; Station identifier:       datetime PPPP E_PPP TX TTT 
 #&gt; Station description:      
 #&gt; Station location:         (lon/lat/alt)
-#&gt; First forecast for:       2019-01-09 16:00:00 
-#&gt; Last forecast for:        2019-01-09 21:00:00 
+#&gt; First forecast for:       2019-01-09 22:00:00 
+#&gt; Last forecast for:        2019-01-10 03:00:00 
 #&gt; Number forecasts (time):  6 
 #&gt; Number of parameters:     5 </div><div class='input'>
 <span class='co'># Extracting forecasts now</span>
@@ -274,27 +274,27 @@ in an empty object if no values are available given the
 #&gt; Issuer: Deutscher Wetterdienst
 #&gt; ProductID: MOSMIX
 #&gt; GeneratingProcess: DWD MOSMIX hourly, Version 1.0
-#&gt; IssueTime: 2019-01-09 15:00:00 UTC
+#&gt; IssueTime: 2019-01-09 21:00:00 UTC
 #&gt; ReferencedModel(s)
 #&gt; - 2019-01-09 12:00:00 UTC, ICON
-#&gt; - 2019-01-09 00:00:00 UTC, ECMWF/IFS 
+#&gt; - 2019-01-09 12:00:00 UTC, ECMWF/IFS 
 #&gt; 
 #&gt; Object is of class zoo:   TRUE 
 #&gt; Station identifier:       11120 
 #&gt; Station description:      INNSBRUCK FL. 
 #&gt; Station location:         11.35,47.27,581.0 (lon/lat/alt)
-#&gt; First forecast for:       2019-01-09 16:00:00 
-#&gt; Last forecast for:        2019-01-19 22:00:00 
+#&gt; First forecast for:       2019-01-09 22:00:00 
+#&gt; Last forecast for:        2019-01-20 04:00:00 
 #&gt; Number forecasts (time):  247 
 #&gt; Number of parameters:     2 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>fcst3</span>))</div><div class='output co'>#&gt; [1] "dwdforecast" "zoo"        </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>fcst3</span>))</div><div class='output co'>#&gt;                        TTT     Td
-#&gt; 2019-01-09 16:00:00 272.65 270.05
-#&gt; 2019-01-09 17:00:00 272.85 270.35
-#&gt; 2019-01-09 18:00:00 272.95 270.55
-#&gt; 2019-01-09 19:00:00 272.95 270.55
-#&gt; 2019-01-09 20:00:00 272.95 270.75
-#&gt; 2019-01-09 21:00:00 272.75 270.95</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fcst3</span> - <span class='fl'>273.15</span>, <span class='kw'>screen</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"green"</span>),
+#&gt; 2019-01-09 22:00:00 272.05 269.25
+#&gt; 2019-01-09 23:00:00 271.85 269.35
+#&gt; 2019-01-10 00:00:00 271.75 269.35
+#&gt; 2019-01-10 01:00:00 271.75 269.35
+#&gt; 2019-01-10 02:00:00 271.65 269.35
+#&gt; 2019-01-10 03:00:00 271.55 269.25</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>fcst3</span> - <span class='fl'>273.15</span>, <span class='kw'>screen</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"green"</span>),
      <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"date/time"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"TTT/Td [degrees Celsius]"</span>,
-     <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"DWD MOSMIX Forecasts for Station Innsbruck Airport (11120)"</span>)</div><div class='img'><img src='get_forecasts-1.png' alt='' width='700' height='433' /></div><div class='input'>
+     <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"DWD MOSMIX Forecasts for Station Innsbruck Airport (11120)"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rval[i, j, drop = drop., ...]: subscript out of bounds</span></div><div class='input'>
 <span class='co'># Remove kmz and kml file</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/files'>file.remove</a></span>(<span class='no'>kmz</span>, <span class='no'>kml</span>)</div><div class='output co'>#&gt; [1] TRUE TRUE</div><div class='input'>
 </div></pre>
