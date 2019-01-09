@@ -7,7 +7,7 @@
 # -------------------------------------------------------------------
 # - EDITORIAL:   2019-01-09, RS: Created file on thinkreto.
 # -------------------------------------------------------------------
-# - L@ST MODIFIED: 2019-01-09 18:48 on meteo-data.uibk.ac.at
+# - L@ST MODIFIED: 2019-01-09 21:11 on marvin
 # -------------------------------------------------------------------
 
     library("mosmix")
@@ -107,7 +107,7 @@
     # Looping over all not-yet-processed files (if there are any),
     # download the XML file, extract information, done.
     if ( nrow(files) > 0 ) {
-        cat(sprintf("* Found %d files to process ...\n"))
+        cat(sprintf("* Found %d files to process ...\n", nrow(files)))
         for ( i in 1:nrow(files) ) {
    
             cat(sprintf("* Downloading \"%s\"\n", as.character(files$srcfile[i])))
