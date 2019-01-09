@@ -40,7 +40,7 @@ plot.dwdforecast <- function(x, ...) {
     heights <- list(temperature = 2, wind = 2, prain = 1, sunshine = 1)
     heights <- heights[names(take)[take]]
 
-    par(mar = rep(0.1, 4), oma = c(4.1, 7.1, 2, 7.2))
+    par(mar = rep(0.1, 4), oma = c(4.1, 7.1, 2.5, 7.2))
     layout(matrix(1L:sum(take), ncol = 1), heights = heights)
 
     # Function for the baseplot
@@ -78,8 +78,16 @@ plot.dwdforecast <- function(x, ...) {
         if ( all(c("TTT", "Td") %in% names(x)) )
             add_polygon(x$TTT - 273.15, lower.limit = x$Td - 273.15, col = "#003300")
         print('xxxxxx')
+        if ( "E_Td" %in% names(x) )
+            add_polygon(              x$Td - 273.15 + x$E_Td/2,
+                        lower.limit = x$Td - 273.15 - x$E_Td/2,
+                        col = "#00FF00")
         if ( "Td" %in% names(x) )
             lines(x$Td  - 273.15, col = colors$green, lwd = 2)
+        if ( "E_TTT" %in% names(x) )
+            add_polygon(              x$TTT - 273.15 + x$E_TTT/2,
+                        lower.limit = x$TTT - 273.15 - x$E_TTT/2,
+                        col = "#FF0000")
         if ( "TTT" %in% names(x) )
             lines(x$TTT - 273.15, col = colors$red,, lwd = 2)
         if ( "TX" %in% names(x) )
@@ -164,17 +172,36 @@ plot.dwdforecast <- function(x, ...) {
             if ( any(c("FF", "FX1") %in% names(x)) ) par(new = TRUE)
             baseplot(xlim, ylim = c(0, 360), yaxt = "n",
                      bg = ! any(c("FF", "FX1") %in% names(x)))
-            points(x$DD, pch = 19, col = rgb(0,0,0,0.5))
+            points(x$DD, pch = 19, col = rgb(0,0,0,0.8))
             axis(side = 4, at = seq(90, 270, by = 90))
+
+            if ( "E_DD" %in% names(x) ) {
+                at <- as.numeric(index(x))
+                y0 <- as.numeric(x$DD) - 0.5 * as.numeric(x$E_DD)
+                y1 <- as.numeric(x$DD) + 0.5 * as.numeric(x$E_DD)
+                segments(at, y0, at, y1,           , col = colors$gray)
+                segments(at, y0 + 360, at, y1 + 360, col = colors$gray)
+                segments(at, y0 - 360, at, y1 - 360, col = colors$gray)
+            }
+
+            mtext(side = 4, line = 4, "wind direction\n[degrees]")
         }
 
+        box()
     }
 
     # Adding axis
-    print(as.Date(xlim))
     idx <- as.POSIXct(seq(as.Date(min(xlim)), as.Date(max(xlim)) + 1, by = 1))
     axis(side = 1, at = idx, labels = NA)
     axis(side = 1, at = idx + 43200, labels = strftime(idx, "%b %d"), lwd = 0)
+
+    # Adding title
+    if ( "main" %in% names(list(...)) ) { main <- list(...)$main } else {
+        main <- sprintf("DWD MOSMIX Forecast, %s (%s)", attr(x, "description"), attr(x, "name"))
+    }
+    print(main)
+    mtext(side = 3, line = 0.5, font = 2, cex = 1.2, main, outer = TRUE)
+
 
 }
 
