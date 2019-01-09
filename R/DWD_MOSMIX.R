@@ -27,7 +27,7 @@ parameter_description <- function(...) {
 
     # Downloading file
     tmpfile <- tempfile()
-    download.file(url, tmpfile, quiet = TRUE)
+    download.file(url, tmpfile, method = "curl", quiet = TRUE)
 
     # Parse XML file
     doc <- xmlParse(tmpfile)
@@ -569,7 +569,7 @@ get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
 
         # Read URL, deparse information.
         idxurl <- sprintf("https://opendata.dwd.de/weather/local_forecasts/mos/MOSMIX_L/single_stations/%1$05d/kml/", stn)
-        check <- try(download.file(idxurl, tmpfile, quiet = TRUE))
+        check <- try(download.file(idxurl, tmpfile, method = "curl", quiet = TRUE))
         if ( inherits(check, "try-error") )
             stop("Problems reaching opendata.dwd.de index file to check for available files!")
         files <- readLines(tmpfile)
@@ -591,7 +591,7 @@ get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
 
         # Read URL, deparse information.
         idxurl = "https://opendata.dwd.de/weather/local_forecasts/mos/MOSMIX_S/all_stations/kml/"
-        check <- try(download.file(idxurl, tmpfile, quiet = TRUE))
+        check <- try(download.file(idxurl, tmpfile, method = "curl", quiet = TRUE))
         if ( inherits(check, "try-error") )
             stop("Problems reaching opendata.dwd.de index file to check for available files!")
         files <- readLines(tmpfile)
