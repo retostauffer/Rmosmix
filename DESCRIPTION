@@ -1,0 +1,17 @@
+Package: mosmix
+Type: Package
+Title: Package for Downloading Public DWD MOSMIX Weather Forecasts
+Version: 0.1
+Date: 2019-01-09
+Author: Reto Stauffer
+Maintainer: <Reto.Stauffer@uibk.ac.at>
+Description: Downloading DWD MOSMIX forecasts publicly available on
+    https://opendata.dwd.de. The forecasts are available as XML files, this package
+    downloads and parses the XML files to create a set of forecast time series
+    objects or data.frames for a set of user-defined stations. Package has been
+    written in less than one day and has to be seen as a working package or beta
+    release. However, if interested feel free to contribute, use, reuse and improve
+    the package :).
+License: GPL-2
+RoxygenNote: 6.1.0
+Depends: R(>= 3.4), zoo, sp, XML
