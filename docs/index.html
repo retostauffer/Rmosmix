@@ -63,13 +63,96 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-Downloading DWD MOSMIX forecasts publicly available on
-    https://opendata.dwd.de. The forecasts are available as XML files, this package
-    downloads and parses the XML files to create a set of forecast time series
-    objects or data.frames for a set of user-defined stations. Package has been
-    written in less than one day and has to be seen as a working package or beta
-    release. However, if interested feel free to contribute, use, reuse and improve
-    the package :).
+
+<div id="r-package-for-downloading-and-handling-dwd-mosmix-forecasts" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#r-package-for-downloading-and-handling-dwd-mosmix-forecasts" class="anchor"></a>R Package for Downloading and Handling DWD MOSMIX Forecasts</h1></div>
+<p>The german weather service (DWD) publishes a set of automated weather forecasts (MOS forecasts) as publicly available data sets.</p>
+<ul>
+<li><a href="https://opendata.dwd.de">DWD open data server</a></li>
+<li><a href="https://www.dwd.de/copyright">DWD copyright information</a></li>
+</ul>
+<p>This small working package allows to easily download and decode these forecasts. The forecasts become available several times a day, XML format. The <code>mosmix</code> R package provides the following features:</p>
+<ul>
+<li>Check files available on the server</li>
+<li>Automatically download and parse forecasts for a set of user-defined locations</li>
+<li>Returns convenient time series objects</li>
+<li>Write (subsetted) data sets to local ASCII files</li>
+</ul>
+<p>For the decoding of the data sets this package depends on the <a href="https://cran.r-project.org/package=XML">XML</a> package. Plesae note that, to be able to install the R package, <code>libxml</code> has to be installed. The forecasts are time series data wherefore this package also depends on the R package <a href="https://cran.r-project.org/package=zoo">zoo</a>.</p>
+</div>
+<div id="package-status" class="section level1">
+<h1 class="hasAnchor">
+<a href="#package-status" class="anchor"></a>Package Status</h1>
+<p>Please note that this is a <strong>working package</strong> and was written in less then a day! Should be seen as an early beta version. Feel free to use, reuse, improve and contribute!</p>
+<p>All best,</p>
+<p><em>Reto</em></p>
+</div>
+<div id="package-installation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#package-installation" class="anchor"></a>Package Installation</h1>
+<p><code>mosmix</code> can be installed using the <em>R</em> package <code>githubinstall</code> (or <code>devtools</code>, or simply clone and install locally).</p>
+<div id="with-devtools-via-https-devtoolsinstall_github" class="section level2">
+<h2 class="hasAnchor">
+<a href="#with-devtools-via-https-devtoolsinstall_github" class="anchor"></a>with devtools via https (<code><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">devtools::install_github</a></code>)</h2>
+<p>Currently the package is only available via <a href="https://github.com">github</a>. One convenient way to install packages from <a href="https://github.com">github</a> is is via <code>devtools</code> (requires <em>R</em> package <code>devtools</code> to be installed; if not use <code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages("devtools")</a></code>).</p>
+<p>The following snippet installes the latest <em>development</em> version of the mosmix package from <a href="https://github.com/retostauffer/Rmosmix">github.com/retostauffer/Rmosmix</a>:</p>
+<pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Load devtools
+library("devtools")
+
+# Install package, should also resolve the dependencies
+install_github("retostauffer/Rmosmix")</a></code></pre>
+<p><strong>Note</strong>: If you do not like experimental versions feel free to install one of our release candidates, e.g., <code>v0.0-2</code>, an early alpha release from December 2018. To install a release candidate provide the additional <code>ref</code> argument. A list of available <a href="https://github.com/retostauffer/Rmosmix/releases">release candidates</a> can be found on the <a href="https://github.com/retostauffer/Rmosmix/releases">github release page</a>.</p>
+<pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Load devtools
+library("devtools")
+
+# Install package, should also resolve the dependencies
+devtools::install_github("retostauffer/Rmosmix", ref = "v0.0-2")</a></code></pre>
+</div>
+<div id="devtools-by-cloning-the-repository" class="section level2">
+<h2 class="hasAnchor">
+<a href="#devtools-by-cloning-the-repository" class="anchor"></a>devtools by cloning the repository</h2>
+<p>You can also clone the repository and install the package based on the checkout. For linux users:</p>
+<pre><code># Change directory
+cd &lt;somewhere/on/your/local/disc&gt;
+
+# Clone repository
+git clone https://github.com/retostauffer/Rmosmix.git
+
+# Start R
+R</code></pre>
+<p>As soon as you are in the interactive <em>R</em> shell:</p>
+<pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Loading the devtools library
+library("devtools")
+
+# Install package
+devtools::install("Rmosmix")</a></code></pre>
+</div>
+<div id="via-console" class="section level2">
+<h2 class="hasAnchor">
+<a href="#via-console" class="anchor"></a>Via console</h2>
+<p>Or of course via console:</p>
+<pre><code># Change directory
+cd &lt;somewhere/on/your/local/disc&gt;
+
+# Clone repository
+git clone https://github.com/retostauffer/Rmosmix.git
+
+# Feel free to use on of our release candidates which
+# might miss some features, but might also be more stable.
+# A list of release candidates can be found on:
+# - https://github.com/retostauffer/Rmosmix/releases
+(cd Rmosmix &amp;&amp; git checkout tags/&lt;tagname&gt; &amp;&amp; cd ..)
+
+# Install directly
+R CMD INSTALL Rmosmix
+
+# OR
+R CMD build Rmosmix
+R CMD INSTALL mosmix_&lt;version&gt;.tar.gz</code></pre>
+</div>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

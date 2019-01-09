@@ -161,9 +161,6 @@ get_meta_info <- function(doc) {
 #' @import XML
 #' @importFrom sp CRS SpatialPointsDataFrame
 #' @author Reto Stauffer
-#' @importFrom utils globalVariables
-
-globalVariables(c("lon", "lat"))
 get_station_information <- function(doc) {
     name <- xpathSApply(doc, "//kml:Placemark/kml:name", xmlValue)
     desc <- xpathSApply(doc, "//kml:Placemark/kml:description", xmlValue)
@@ -178,6 +175,8 @@ get_station_information <- function(doc) {
 
 }
 
+#' @importFrom utils globalVariables
+globalVariables(c("lon", "lat"))
 
 #' Extract DWD MOSMIX Datetime Information 
 #'
@@ -554,9 +553,6 @@ write_ascii.dwdforecast <- function(x, file = NULL, dir = "DWDMOS", parameter = 
 #' file.remove(kmz, kml)
 #' @export
 #' @author Reto Stauffer
-#' @importFrom utils globalVariables
-
-globalVariables(c("processed"))
 get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
 
     type <- match.arg(type, c("L", "S"))
@@ -602,4 +598,6 @@ get_files_available <- function(type = "L", stn = NULL, outdir = "DWDMOS") {
     }
 }
 
+#' @importFrom utils globalVariables
+globalVariables(c("processed"))
 

@@ -121,7 +121,7 @@ forecasts for a specific station/location.</p>
       <td><p><code>character</code> or <code>factor</code> containing the
 name of the station (e.g., <code>"11120"</code>, <code>"06660"</code>).
 The name has to match the name as provided by the XML file
-(see <code>get_station_information</code>).</p></td>
+(see <code><a href='get_station_information.html'>get_station_information</a></code>).</p></td>
     </tr>
     <tr>
       <th>doc</th>
@@ -203,7 +203,8 @@ in an empty object if no values are available given the
 <span class='no'>doc</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>XML</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/XML/topics/xmlTreeParse'>xmlParse</a></span>(<span class='no'>kml</span>)
 <span class='no'>datetime</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_datetime.html'>get_datetime</a></span>(<span class='no'>doc</span>)
 <span class='no'>meta</span>     <span class='kw'>&lt;-</span> <span class='fu'><a href='get_meta_info.html'>get_meta_info</a></span>(<span class='no'>doc</span>)
-<span class='no'>stations</span> <span class='kw'>&lt;-</span> <span class='fu'>get_station_information</span>(<span class='no'>doc</span>)</div><div class='output co'>#&gt; <span class='error'>Error in get_station_information(doc): could not find function "get_station_information"</span></div><div class='input'>
+<span class='no'>stations</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_station_information.html'>get_station_information</a></span>(<span class='no'>doc</span>)
+
 <span class='co'># Extracting forecasts now</span>
 <span class='co'># - parameter = NULL:    extracts all parameters</span>
 <span class='co'># - as.zoo = TRUE:       returns a time series object.</span>
