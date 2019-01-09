@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • mosmix</title>
+<title>Changelog • mosmix</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -47,7 +47,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -89,91 +89,47 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+      <h1>Changelog <small></small></h1>
+      
     </div>
 
-    <table class="ref-index">
-
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="add_polygon.html">add_polygon()</a></code> </p>
-        </td>
-        <td><p>Add Polygon to Plot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_datetime.html">get_datetime()</a></code> </p>
-        </td>
-        <td><p>Extract DWD MOSMIX Datetime Information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_files_available.html">get_files_available()</a></code> </p>
-        </td>
-        <td><p>Check Available Forecast Files and Check if Action Required</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_forecasts.html">get_forecasts()</a></code> <code><a href="get_forecasts.html">print(<i>&lt;dwdforecast&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Extract DWD MOSMIX Forecast Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_meta_info.html">get_meta_info()</a></code> <code><a href="get_meta_info.html">print(<i>&lt;dwdmeta&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Extract DWD MOSMIX Forecast Meta Information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_station_information.html">get_station_information()</a></code> </p>
-        </td>
-        <td><p>Extract DWD MOSMIX Station Information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="parameter_description.html">parameter_description()</a></code> </p>
-        </td>
-        <td><p>Load DWD MOS Parameter Description</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.dwdforecast.html">plot(<i>&lt;dwdforecast&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Default Plot for DWD MOSMIX Forecasts</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_ascii.html">write_ascii()</a></code> </p>
-        </td>
-        <td><p>Store DWD MOSMIX Forecasts As ASCII File</p></td>
-      </tr>
-    </tbody>
-    </table>
+    <div id="version-0-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#version-0-1" class="anchor"></a>Version 0.1</h2>
+<p>I’ve just set up a small R package for downloading handling and accessing DWD MOSMOX forecasts. Current features:</p>
+<ul>
+<li>Selective download of MOSMIX-L and MOSMIX-S forecasts for user-defined set of locations/stations (see details below)</li>
+<li>
+<code>get_files_avail</code> checks the available files on the server.</li>
+<li>
+<code>tests/automation.R</code> contains a small script which might can be used for automation. Will, at some point, be put into an automation function for handy use. The script is checking available files on the server and only processes the files which have not yet been downloaded, parsed, and stored. This script can be used fur an <em>archive script</em>. We use it to store some forecasts from the live rolling archive for later analysis.</li>
+</ul>
+<p><strong>Some information about the data</strong>: the German weather service (DWD) provides some DWD MOSMIX forecasts (statistically corrected forecasts based on the ICON/ECMWF numerical weather prediction model) on their <a href="https://opendata.dwd.de">opendata server</a>. Two products are available:</p>
+<ul>
+<li>MOSMIX-L: produced 4 times a day up to 240 hours ahead, provides up to 115 parameters (location dependent).</li>
+<li>MOSMIX-S: produced every hour up to 240 hours ahead. Provides up to 40 parameters (location dependent).</li>
+</ul>
+<p>MOSMIX-L forecasts are available as individual files, one file per station. Thus, downloading these forecasts is rather efficient. For MOSMIX-S one single file is available on the server containing all locations (several thousand different locations). To be able to extract one station the whole file has to be downloaded. Thus, the MOSMIX-M takes much longer to process and needs some more bandwidth, however, works like a charm!</p>
+<p>If you use these data sets please read the DWD terms and conditions regarding their open data sets! More information:</p>
+<ul>
+<li><a href="https://opendata.dwd.de">DWD open data server</a></li>
+<li><a href="https://www.dwd.de/copyright">DWD copyright information</a></li>
+<li><a href="https://www.dwd.de/EN/ourservices/met_application_mosmix/met_applicati%20on_mosmix.html">DWD MOSMIX product information</a></li>
+</ul>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#version-0-1">0.1</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>

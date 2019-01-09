@@ -3,7 +3,8 @@ Type: Package
 Title: Package for Downloading Public DWD MOSMIX Weather Forecasts
 Version: 0.1
 Date: 2019-01-09
-Author: Reto Stauffer
+Authors@R: c(person(given = "Reto", family = "Stauffer", role = c("aut","cre"), email = "Reto.Stauffer@uibk.ac.at",
+                    comment = c(ORCID = "0000-0002-3798-5507")))
 Maintainer: <Reto.Stauffer@uibk.ac.at>
 Description: Downloading DWD MOSMIX forecasts publicly available on
     https://opendata.dwd.de. The forecasts are available as XML files, this package
@@ -15,3 +16,4 @@ Description: Downloading DWD MOSMIX forecasts publicly available on
 License: GPL-2
 RoxygenNote: 6.1.0
 Depends: R(>= 3.1), zoo, sp, XML
+BugReports: https://github.com/retostauffer/Rmosmix

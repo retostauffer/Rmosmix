@@ -63,7 +63,7 @@ plot.dwdforecast <- function(x, ...) {
     }
 
     # X-Limits
-    xlim <- range(index(data))
+    xlim <- range(index(x))
 
     # A set of colors I'll use
     colors <- list(red = "#FF0000", green = "green", gray = "gray60",

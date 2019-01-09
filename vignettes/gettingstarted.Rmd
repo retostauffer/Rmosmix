@@ -1,0 +1,56 @@
+
+
+
+
+```{r, echo = TRUE, fig = TRUE, fig.width = 10, fig.height = 10}
+library("mosmix")
+library("zoo")
+
+# Latest L-type DWD MOSMIX forecast file for Innsbruck Airport
+url <- "https://opendata.dwd.de/weather/local_forecasts/mos/MOSMIX_L/single_stations/11120/kml/MOSMIX_L_LATEST_11120.kmz"
+
+# Download and extract file
+kmz   <- tempfile("mosmix_demo_", fileext = ".kmz")
+check <- download.file(url, kmz)
+if ( inherits(check, "try-error") ) stop("Problems downloading the file!")
+kml   <- unzip(kmz)
+
+# Parsing the unzipped kml file (XML format)
+# And extract required datetime and meta information.
+doc <- XML::xmlParse(kml)
+datetime <- get_datetime(doc)
+meta     <- get_meta_info(doc)
+stations <- get_station_information(doc)
+
+# Extracting forecasts now
+# - parameter = NULL:    extracts all parameters
+# - as.zoo = TRUE:       returns a time series object.
+fcst1 <- get_forecasts("11120", doc, datetime, meta)
+print(fcst1)
+print(class(fcst1))
+print(head(fcst1[,1:5]))
+
+print('x')
+plot(fcst1)
+
+# Extracting forecasts now
+# - parameter = NULL:    extracts all parameters
+# - as.zoo = FALSE:      returns a data.frame
+fcst2 <- get_forecasts("11120", doc, datetime, meta, as.zoo = FALSE)
+print(fcst2)
+print(class(fcst2))
+print(head(fcst2[,1:5]))
+
+# Extracting forecasts now
+# - parameter is set:    return 2m temperature and 2m dewpoint
+#                        temperature only (see parameter_description method)
+# - as.zoo = TRUE:       returns a time series object.
+fcst3 <- get_forecasts("11120", doc, datetime, meta, parameter = c("TTT", "Td"))
+print(fcst3)
+print(class(fcst3))
+print(head(fcst3))
+
+# Remove kmz and kml file
+file.remove(kmz, kml)
+```
+

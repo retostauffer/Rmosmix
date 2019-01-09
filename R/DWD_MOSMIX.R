@@ -311,7 +311,7 @@ get_datetime <- function(doc) {
 #' print(fcst3)
 #' print(class(fcst3))
 #' print(head(fcst3))
-#' plot(fcst3 - 273.15, screen = 1, col = c("red", "green"),
+#' zoo::plot.zoo(fcst3 - 273.15, screen = 1, col = c("red", "green"),
 #'      xlab = "date/time", ylab = "TTT/Td [degrees Celsius]",
 #'      main = "DWD MOSMIX Forecasts for Station Innsbruck Airport (11120)")
 #'

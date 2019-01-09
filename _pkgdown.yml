@@ -1,0 +1,13 @@
+template:
+    params:
+        bootswatch: "flatly"
+
+navbar:
+    left:
+        - text: "Getting started"
+          href: articles/gettingstarted.html
+        - text: "News"
+          href: news/index.html
+        - text: "Contact"
+          href: contact.html
+
