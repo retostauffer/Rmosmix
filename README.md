@@ -43,6 +43,14 @@ All best,
 
 _Reto_
 
+Documentation
+=============
+
+I started writing a githubio documentation, but currently only a rough
+skeleton!
+
+* [retostauffer.github.io/Rmosmix](retostauffer.github.io/Rmosmix)
+
 Package Installation
 ====================
 
