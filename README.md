@@ -49,7 +49,7 @@ Documentation
 I started writing a githubio documentation, but currently only a rough
 skeleton!
 
-* [retostauffer.github.io/Rmosmix](retostauffer.github.io/Rmosmix)
+* [retostauffer.github.io/Rmosmix](https://retostauffer.github.io/Rmosmix)
 
 Package Installation
 ====================

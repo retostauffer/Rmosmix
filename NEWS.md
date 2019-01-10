@@ -1,4 +1,13 @@
 
+TODO
+----
+
+* Loading all nodes is memory inefficient, try to find a way
+  to loop along an xpath.
+* Colors for the plotting function.
+* Documentation.
+* Testing.
+
 Version 0.1
 -----------
 
