@@ -330,7 +330,7 @@ get_forecasts <- function(station, doc, datetime, meta, parameter = NULL, as.zoo
     station <- as.character(station)
     stopifnot(length(station) == 1)
     cat(sprintf("Processing station %s\n", station))
-    path  <- sprintf("//kml:Placemark[kml:name = %s]//dwd:Forecast", station)
+    path  <- sprintf("//kml:Placemark[kml:name = \'%s\']//dwd:Forecast", station)
     nodes <- xpathApply(doc, path)#, xmlValue)
     elem  <- sapply(nodes, function(x) as.character(xmlAttrs(x)["elementName"]))
     # No forecasts? Return NULL
@@ -358,7 +358,7 @@ get_forecasts <- function(station, doc, datetime, meta, parameter = NULL, as.zoo
     class(fcst) <- c("dwdforecast", class(fcst))
     attr(fcst, "meta")    <- meta
     # Fetching station information again
-    path <- sprintf("//kml:Placemark[kml:name = %s]", station)
+    path <- sprintf("//kml:Placemark[kml:name = \'%s\']", station)
     attr(fcst, "name")        <- xpathSApply(doc, sprintf("%s/%s", path, "kml:name"), xmlValue)
     attr(fcst, "description") <- xpathSApply(doc, sprintf("%s/%s", path, "kml:description"), xmlValue)
     attr(fcst, "coordinates") <- xpathSApply(doc, sprintf("%s/%s", path, "kml:Point/kml:coordinates"), xmlValue)
