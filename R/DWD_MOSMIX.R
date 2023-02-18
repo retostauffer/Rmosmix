@@ -329,7 +329,7 @@ get_forecasts <- function(station, doc, datetime, meta, parameter = NULL, as.zoo
     stopifnot(inherits(station, c("character", "factor")))
     station <- as.character(station)
     stopifnot(length(station) == 1)
-    cat(sprintf("Processing station %s\n", station))
+    #cat(sprintf("Processing station %s\n", station))
     path  <- sprintf("//kml:Placemark[kml:name = \'%s\']//dwd:Forecast", station)
     nodes <- xpathApply(doc, path)#, xmlValue)
     elem  <- sapply(nodes, function(x) as.character(xmlAttrs(x)["elementName"]))
