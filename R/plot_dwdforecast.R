@@ -77,7 +77,6 @@ plot.dwdforecast <- function(x, ...) {
         baseplot(xlim, ylim, h = seq(-50, 50, by = 2.5))
         if ( all(c("TTT", "Td") %in% names(x)) )
             add_polygon(x$TTT - 273.15, lower.limit = x$Td - 273.15, col = "#003300")
-        print('xxxxxx')
         if ( "E_Td" %in% names(x) )
             add_polygon(              x$Td - 273.15 + x$E_Td/2,
                         lower.limit = x$Td - 273.15 - x$E_Td/2,
@@ -199,7 +198,7 @@ plot.dwdforecast <- function(x, ...) {
     if ( "main" %in% names(list(...)) ) { main <- list(...)$main } else {
         main <- sprintf("DWD MOSMIX Forecast, %s (%s)", attr(x, "description"), attr(x, "name"))
     }
-    print(main)
+    #print(main)
     mtext(side = 3, line = 0.5, font = 2, cex = 1.2, main, outer = TRUE)
 
 
